@@ -1,0 +1,9 @@
+[project]
+name = "celltypemark"
+version = "0.1.0"
+description = "cell type annotation in single-cell RNA sequencing data using marker genes"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anndata>=0.11.4",
+]
