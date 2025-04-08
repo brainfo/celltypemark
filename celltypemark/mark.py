@@ -29,10 +29,10 @@ def mark(adata: AnnData, marker_genes: defaultdict, by: str='leiden', save: str=
     ## if by not None
     if by is not None:
         auto_annot_df = pd.crosstab(adata.obs[by], adata.obs.celltypemark, normalize='columns')*100
+        auto_annote_by = auto_annot_df.idxmax(axis=1)
         adata.obs[f'celltypemark_{by}'] = adata.obs[by].map(auto_annote_by)
         adata.obs[f'celltypemark_{by}'] = pd.Categorical(adata.obs[f'celltypemark_{by}'].astype(str), categories=adata.obs[f'celltypemark_{by}'].astype(str).dropna().unique())
         if plot:
-            auto_annote_by = auto_annot_df.idxmax(axis=1)
             if save is not None:
                 ## create directory if not exists
                 os.makedirs('celltypemark_out/', exist_ok=True)

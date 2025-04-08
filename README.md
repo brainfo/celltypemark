@@ -25,12 +25,29 @@ import celltypemark as ctm
 # Load your AnnData object
 adata = sc.read_h5ad("your_data.h5ad")
 
-# Score cell types using marker genes
+# Score cell types using default marker genes
 adata = ctm.score(adata, ctm.marker_genes)
+
+# Score cell types using specified marker genes
+## Example, Tabula_Muris
+from pathlib import Path
+resource_path = Path("your gene marker file")
+marker_genes = ctm.load_resource(resource_path, resource_url='https://maayanlab.cloud/Enrichr/geneSetLibrary?mode=text&libraryName=Tabula_Muris')
+# For using marker sets from enrichr, uppercase var_names
+adata.var_names = adata.var_names.str.upper()
+adata = ctm.score(adata, marker_genes)
 
 # Annotate cell types
 adata = ctm.mark(adata, ctm.marker_genes, by='leiden', save='results', plot=True)
 ```
+
+### Output
+
+Add in the adata.obs:
+- the scores of the keys in the gene sets for each observation
+- the predicted key for each observation
+- (if by) the predicted key for each by group, e.g., leiden
+- (if save) save the scores of the keys for each by group in a txt file and the heatmap of the data under cellmarkoutput/
 
 ## Dependencies
 
