@@ -53,7 +53,7 @@ marker_genes = ctm.load_resource(resource_path, resource_url='https://maayanlab.
 ```python
 # For using marker sets from enrichr, uppercase var_names
 adata.var_names = adata.var_names.str.upper()
-adata = ctm.score(adata, marker_genes)
+adata = ctm.score(adata, ctm.marker_genes)
 adata = ctm.mark(adata, ctm.marker_genes, by='leiden', save='results', plot=True)
 ```
 
