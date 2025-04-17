@@ -31,7 +31,7 @@ adata = sc.read_h5ad("your_data.h5ad")
 adata = ctm.score(adata, ctm.marker_genes)
 ```
 
-###Score cell types using specified marker genes
+### Score cell types using specified marker genes
 
 - Example, Tabula_Muris
 ```python
