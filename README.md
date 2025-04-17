@@ -18,11 +18,10 @@ pip install celltypemark
 
 ## Usage
 
+### Load your AnnData object
 ```python
 import scanpy as sc
 import celltypemark as ctm
-
-# Load your AnnData object
 adata = sc.read_h5ad("your_data.h5ad")
 ```
 
