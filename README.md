@@ -32,20 +32,28 @@ adata = ctm.score(adata, ctm.marker_genes)
 
 ### Score cell types using specified marker genes
 
-- Example, Tabula_Muris
+- Example, any existing local file
+
+```python
+from pathlib import Path
+resource_path = Path("your gene marker file")
+marker_genes = ctm.load_resource(resource_path)
+```
+
+- Example, if your resource file is not yet on disk, download from resource_url
+
 ```python
 from pathlib import Path
 resource_path = Path("your gene marker file")
 marker_genes = ctm.load_resource(resource_path, resource_url='https://maayanlab.cloud/Enrichr/geneSetLibrary?mode=text&libraryName=Tabula_Muris')
-# For using marker sets from enrichr, uppercase var_names
-adata.var_names = adata.var_names.str.upper()
-adata = ctm.score(adata, marker_genes)
 ```
-- [ ] Example, any local file
 
 ### Annotate cell types
 
 ```python
+# For using marker sets from enrichr, uppercase var_names
+adata.var_names = adata.var_names.str.upper()
+adata = ctm.score(adata, marker_genes)
 adata = ctm.mark(adata, ctm.marker_genes, by='leiden', save='results', plot=True)
 ```
 
