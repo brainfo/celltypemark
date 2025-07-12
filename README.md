@@ -57,6 +57,24 @@ adata = ctm.score(adata, ctm.marker_genes)
 adata = ctm.mark(adata, ctm.marker_genes, by='leiden', save='results', plot=True)
 ```
 
+### Fisher's Exact Test for Marker Enrichment
+
+Perform Fisher's exact test to assess enrichment of cluster marker genes against predefined cell type markers:
+
+```python
+import pandas as pd
+
+# Load cluster marker genes (Excel file with 'cluster' and 'gene' columns)
+deg = pd.read_excel('cluster_markers.xlsx')
+
+# Perform Fisher's exact test using default HuBMAP markers
+results = ctm.fisher(deg, ctm.marker_genes, top_n=20)
+
+# View significant enrichments
+significant = results[results['p_value_adj'] < 0.05]
+print(significant[['cluster', 'cell_type', 'odds_ratio', 'p_value_adj', 'overlap_genes']])
+```
+
 ### Output
 
 Add in the adata.obs:
