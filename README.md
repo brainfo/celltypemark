@@ -13,7 +13,7 @@ CellTypeMark is a Python package for cell type annotation in single-cell RNA seq
 ## Installation
 
 ```bash
-pip install celltypemark
+uv pip install git+https://github.com/brainfo/celltypemark.git
 ```
 
 ## Usage
