@@ -67,7 +67,7 @@ Perform Fisher's exact test to assess enrichment of cluster marker genes against
 import pandas as pd
 
 # Load cluster marker genes (Excel file with 'cluster' and 'gene' columns)
-degs = pd.read_excel('cluster_markers.xlsx')
+degs = pd.read_excel('test/test_cluster_markers.xlsx')
 
 # Perform Fisher's exact test using default HuBMAP markers
 fisher_results = ctm.fisher(degs, marker_genes, top_n=20)
